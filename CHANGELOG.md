@@ -1,3 +1,7 @@
+### v0.3.1
+
+- sequentally take screenshots to prevent hangs. see: https://github.com/puppeteer/puppeteer/issues/7507#issuecomment-1035766565
+
 ### v0.3.0
 
 - Added support for `--target <selector>` option to perform partial comparison

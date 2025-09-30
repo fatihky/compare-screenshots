@@ -6,6 +6,7 @@ export interface TakeScreenshotOpts {
   viewport?: Viewport;
   fullPage?: boolean;
   waitFor?: PuppeteerLifeCycleEvent;
+  targetElementSelector?: string;
 }
 
 export function pngCompare(
@@ -45,6 +46,17 @@ export async function takeScreenshot(
   }
 
   await page.goto(url, { waitUntil: opts?.waitFor });
+
+  if (opts?.targetElementSelector) {
+    const el = await page.$(opts.targetElementSelector);
+
+    if (!el)
+      throw new Error(
+        `Selector "${opts.targetElementSelector}" did not match anything`,
+      );
+
+    return await el.screenshot();
+  }
 
   return page.screenshot({ fullPage: opts?.fullPage });
 }

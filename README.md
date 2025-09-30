@@ -23,4 +23,7 @@ compare-screenshots --wait-for domcontentloaded https://example.com/foo https://
 compare-screenshots --wait-for networkdidle0 https://example.com/foo https://example.com/bar
 compare-screenshots --wait-for networkdidle2 https://example.com/foo https://example.com/bar
 compare-screenshots --wait-for load https://example.com/foo https://example.com/bar
+
+# target selector
+compare-screenshots --target .content https://example.com/foo https://example.com/bar
 ```

@@ -12,6 +12,10 @@ const prog = new Command()
   .argument('<first-url>')
   .argument('<second-url>')
   .option(
+    '--target <selector>',
+    'target element selector to compare partial elements',
+  )
+  .option(
     '--wait-for <domcontentloaded | load | networkidle0 | networkidle2>',
     'wait for network',
     'networkidle2',
@@ -50,6 +54,7 @@ async function main() {
     ].includes(opts?.waitFor)
       ? (opts.waitFor as PuppeteerLifeCycleEvent)
       : undefined,
+    targetElementSelector: opts.target,
   };
   const timestamp = (Date.now() / 1000).toFixed(0);
   const oldSsPath = join(opts.outDir, `${timestamp}_1old.png`);
@@ -62,9 +67,11 @@ async function main() {
 
   try {
     const [ss1, ss2] = await Promise.all([
-      takeScreenshot(browser, url1, screenshotOpts),
-      takeScreenshot(browser, url2, screenshotOpts),
+      await takeScreenshot(browser, url1, screenshotOpts),
+      await takeScreenshot(browser, url2, screenshotOpts),
     ]);
+
+    console.log('took screenshots');
 
     await writeFile(oldSsPath, ss1);
     console.log(`✔️ Saved "${url1}" screenshot to ${oldSsPath}`);
@@ -84,6 +91,8 @@ async function main() {
         `🇮 Screenshots have ${diff.pixels} different pixels. Difference image is saved to ${diffPath}`,
       );
     }
+  } catch (err) {
+    console.log('Failed to take and compare screenshots:', err);
   } finally {
     await browser.close();
   }

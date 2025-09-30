@@ -18,4 +18,9 @@ compare-screenshots https://example.com/foo https://example.com/bar
 compare-screenshots --no-headless https://example.com/foo https://example.com/bar
 
 compare-screenshots --out-dir ./screenshots https://example.com/foo https://example.com/bar
+
+compare-screenshots --wait-for domcontentloaded https://example.com/foo https://example.com/bar
+compare-screenshots --wait-for networkdidle0 https://example.com/foo https://example.com/bar
+compare-screenshots --wait-for networkdidle2 https://example.com/foo https://example.com/bar
+compare-screenshots --wait-for load https://example.com/foo https://example.com/bar
 ```

@@ -1,10 +1,11 @@
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
-import type { Viewport, Browser } from 'puppeteer';
+import type { Browser, PuppeteerLifeCycleEvent, Viewport } from 'puppeteer';
 
 export interface TakeScreenshotOpts {
   viewport?: Viewport;
   fullPage?: boolean;
+  waitFor?: PuppeteerLifeCycleEvent;
 }
 
 export function pngCompare(
@@ -43,7 +44,7 @@ export async function takeScreenshot(
     await page.setViewport(opts.viewport);
   }
 
-  await page.goto(url, { waitUntil: 'networkidle0' });
+  await page.goto(url, { waitUntil: opts?.waitFor });
 
   return page.screenshot({ fullPage: opts?.fullPage });
 }

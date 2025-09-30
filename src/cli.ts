@@ -1,16 +1,21 @@
 #!/usr/bin/env node
 
-import { Command } from '@commander-js/extra-typings';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { PNG } from 'pngjs';
-import { launch } from 'puppeteer';
-import { pngCompare, takeScreenshot, type TakeScreenshotOpts } from '.';
+import { Command } from '@commander-js/extra-typings';
 import { mkdirp } from 'mkdirp';
+import { PNG } from 'pngjs';
+import { launch, type PuppeteerLifeCycleEvent } from 'puppeteer';
+import { pngCompare, type TakeScreenshotOpts, takeScreenshot } from '.';
 
 const prog = new Command()
   .argument('<first-url>')
   .argument('<second-url>')
+  .option(
+    '--wait-for <domcontentloaded | load | networkidle0 | networkidle2>',
+    'wait for network',
+    'networkidle2',
+  )
   .option('--no-headless')
   .option('--headless', 'launch browser in headless mode', true)
   .option('--no-full-page')
@@ -37,6 +42,14 @@ async function main() {
   const screenshotOpts: TakeScreenshotOpts = {
     viewport,
     fullPage: opts.fullPage,
+    waitFor: [
+      'domcontentloaded',
+      'networkidle0',
+      'networkidle2',
+      'load',
+    ].includes(opts?.waitFor)
+      ? (opts.waitFor as PuppeteerLifeCycleEvent)
+      : undefined,
   };
   const timestamp = (Date.now() / 1000).toFixed(0);
   const oldSsPath = join(opts.outDir, `${timestamp}_1old.png`);

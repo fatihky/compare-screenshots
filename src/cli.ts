@@ -66,12 +66,8 @@ async function main() {
   if (!url1 || !url2) throw new Error('urls are required');
 
   try {
-    const [ss1, ss2] = await Promise.all([
-      await takeScreenshot(browser, url1, screenshotOpts),
-      await takeScreenshot(browser, url2, screenshotOpts),
-    ]);
-
-    console.log('took screenshots');
+    const ss1 = await takeScreenshot(browser, url1, screenshotOpts);
+    const ss2 = await takeScreenshot(browser, url2, screenshotOpts);
 
     await writeFile(oldSsPath, ss1);
     console.log(`✔️ Saved "${url1}" screenshot to ${oldSsPath}`);

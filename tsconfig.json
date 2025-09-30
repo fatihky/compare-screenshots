@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "moduleResolution": "node",
+    "noUncheckedIndexedAccess": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "strict": true,
+    "sourceMap": true,
+    "target": "es2021",
+    "module": "commonjs"
+  }
+}

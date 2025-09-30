@@ -1,0 +1,48 @@
+{
+  "name": "compare-screenshots",
+  "version": "0.1.0",
+  "description": "Compare screenshots of the given urls. Outputs detailed diff image.",
+  "private": false,
+  "keywords": [
+    "screenshot",
+    "puppeteer",
+    "comparison"
+  ],
+  "homepage": "https://github.com/fatihky/compare-screenshots#readme",
+  "bugs": {
+    "url": "https://github.com/fatihky/compare-screenshots/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatihky/compare-screenshots.git"
+  },
+  "license": "MIT",
+  "author": "Fatih Kaya <1994274@gmail.com>",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": "./dist/cli.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "biome format --write .",
+    "lint": "biome lint --write .",
+    "test": "echo 'no tests' && exit 1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.4",
+    "@types/node": "^24.6.0",
+    "@types/papaparse": "^5.3.16",
+    "@types/pngjs": "^6.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@commander-js/extra-typings": "^14.0.0",
+    "commander": "^14.0.1",
+    "mkdirp": "^3.0.1",
+    "papaparse": "^5.5.3",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
+    "puppeteer": "^24.22.3"
+  }
+}

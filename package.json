@@ -1,6 +1,6 @@
 {
   "name": "compare-screenshots",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Compare screenshots of the given urls. Outputs detailed diff image.",
   "private": false,
   "keywords": [

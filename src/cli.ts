@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
-import { writeFile } from 'node:fs/promises';
-import { join } from 'node:path';
 import { Command } from '@commander-js/extra-typings';
 import { mkdirp } from 'mkdirp';
+import { writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { PNG } from 'pngjs';
 import { launch, type PuppeteerLifeCycleEvent } from 'puppeteer';
-import { pngCompare, type TakeScreenshotOpts, takeScreenshot } from '.';
+import { pngCompare, takeScreenshot, type TakeScreenshotOpts } from '.';
+import ms = require('ms');
 
 const prog = new Command()
   .argument('<first-url>')
@@ -26,6 +27,11 @@ const prog = new Command()
   .option('--full-page', 'take full page screenshot', true)
   .option('--viewport <size>', 'viewport size', '1920x1080')
   .option(
+    '--timeout <duration>',
+    'Timeout for all actions done with puppeteer. Either milliseconds or duration identifier like "1 minute". See: https://www.npmjs.com/package/ms',
+    '30s',
+  )
+  .option(
     '--out-dir <path>',
     'output directory to save screenshots and difference',
     './tmp',
@@ -42,7 +48,11 @@ async function main() {
   const [url1, url2] = prog.args;
   const viewport = parseViewportSize(prog.opts().viewport);
   const opts = prog.opts();
-  const browser = await launch({ headless: opts.headless });
+  const timeout = ms(opts.timeout as ms.StringValue);
+  const browser = await launch({
+    headless: opts.headless,
+    timeout,
+  });
   const screenshotOpts: TakeScreenshotOpts = {
     viewport,
     fullPage: opts.fullPage,
@@ -55,6 +65,7 @@ async function main() {
       ? (opts.waitFor as PuppeteerLifeCycleEvent)
       : undefined,
     targetElementSelector: opts.target,
+    timeout,
   };
   const timestamp = (Date.now() / 1000).toFixed(0);
   const oldSsPath = join(opts.outDir, `${timestamp}_1old.png`);

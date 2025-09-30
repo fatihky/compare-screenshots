@@ -17,6 +17,9 @@ importers:
       mkdirp:
         specifier: ^3.0.1
         version: 3.0.1
+      ms:
+        specifier: ^2.1.3
+        version: 2.1.3
       papaparse:
         specifier: ^5.5.3
         version: 5.5.3
@@ -33,6 +36,9 @@ importers:
       '@biomejs/biome':
         specifier: ^2.2.4
         version: 2.2.4
+      '@types/ms':
+        specifier: ^2.1.0
+        version: 2.1.0
       '@types/node':
         specifier: ^24.6.0
         version: 24.6.0
@@ -150,6 +156,9 @@ packages:
 
   '@tsconfig/node16@1.0.4':
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
+
+  '@types/ms@2.1.0':
+    resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
   '@types/node@24.6.0':
     resolution: {integrity: sha512-F1CBxgqwOMc4GKJ7eY22hWhBVQuMYTtqI8L0FcszYcpYX0fzfDGpez22Xau8Mgm7O9fI+zA/TYIdq3tGWfweBA==}
@@ -689,6 +698,8 @@ snapshots:
   '@tsconfig/node14@1.0.3': {}
 
   '@tsconfig/node16@1.0.4': {}
+
+  '@types/ms@2.1.0': {}
 
   '@types/node@24.6.0':
     dependencies:

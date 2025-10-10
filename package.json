@@ -26,7 +26,8 @@
     "build": "tsc",
     "format": "biome format --write .",
     "lint": "biome lint --write .",
-    "test": "echo 'no tests' && exit 1"
+    "test": "echo 'no tests' && exit 1",
+    "prepublishOnly": "build"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.4",

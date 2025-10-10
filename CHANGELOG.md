@@ -1,3 +1,7 @@
+### v0.5.0
+
+- Log screenshot dimensions if the dimensions mismatch.
+
 ### v0.4.0
 
 - Added support for `--timeout <duration>`

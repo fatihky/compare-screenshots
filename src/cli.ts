@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
-import { Command } from '@commander-js/extra-typings';
-import { mkdirp } from 'mkdirp';
 import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { Command } from '@commander-js/extra-typings';
+import { mkdirp } from 'mkdirp';
 import { PNG } from 'pngjs';
 import { launch, type PuppeteerLifeCycleEvent } from 'puppeteer';
-import { pngCompare, takeScreenshot, type TakeScreenshotOpts } from '.';
+import { pngCompare, type TakeScreenshotOpts, takeScreenshot } from '.';
+
 import ms = require('ms');
 
 const prog = new Command()
@@ -89,8 +90,10 @@ async function main() {
     const diff = pngCompare(ss1, ss2);
 
     if (diff === null) console.log('✔️ Screenshots are identical');
-    else if (diff === 'dimension-mismatch')
-      console.log('✖️ Screenshot dimensions do not match.');
+    else if ('type' in diff)
+      console.log(
+        `✖️ Screenshot dimensions do not match. Old: ${diff.old.width}x${diff.old.height}, New: ${diff.new.width}x${diff.new.height}`,
+      );
     else {
       await writeFile(diffPath, PNG.sync.write(diff.png));
 

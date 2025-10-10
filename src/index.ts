@@ -13,12 +13,23 @@ export interface TakeScreenshotOpts {
 export function pngCompare(
   i1: Uint8Array<ArrayBufferLike>,
   i2: Uint8Array<ArrayBufferLike>,
-): { pixels: number; png: PNG } | 'dimension-mismatch' | null {
+):
+  | { pixels: number; png: PNG }
+  | {
+      type: 'dimension-mismatch';
+      old: { width: number; height: number };
+      new: { width: number; height: number };
+    }
+  | null {
   const p1 = PNG.sync.read(Buffer.from(i1));
   const p2 = PNG.sync.read(Buffer.from(i2));
 
   if (p1.width !== p2.width || p1.height !== p2.height)
-    return 'dimension-mismatch';
+    return {
+      type: 'dimension-mismatch',
+      old: { width: p1.width, height: p1.height },
+      new: { width: p2.width, height: p2.height },
+    };
 
   const diff = new PNG({ width: p1.width, height: p1.height });
 

@@ -6,11 +6,14 @@ import { Command } from '@commander-js/extra-typings';
 import { mkdirp } from 'mkdirp';
 import { PNG } from 'pngjs';
 import { launch, type PuppeteerLifeCycleEvent } from 'puppeteer';
+import * as pkgJson from '../package.json';
 import { pngCompare, type TakeScreenshotOpts, takeScreenshot } from '.';
 
 import ms = require('ms');
 
-const prog = new Command()
+const prog = new Command('compare-screenshot')
+  .name('compare-screenshots')
+  .command('compare-screenshots')
   .argument('<first-url>')
   .argument('<second-url>')
   .option(
@@ -37,6 +40,7 @@ const prog = new Command()
     'output directory to save screenshots and difference',
     './tmp',
   )
+  .version(pkgJson.version)
   .parse();
 
 function parseViewportSize(size: string) {

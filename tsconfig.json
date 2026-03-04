@@ -4,6 +4,7 @@
     "moduleResolution": "node",
     "noUncheckedIndexedAccess": true,
     "outDir": "./dist",
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "sourceMap": true,

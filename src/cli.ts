@@ -11,9 +11,7 @@ import { pngCompare, type TakeScreenshotOpts, takeScreenshot } from '.';
 
 import ms = require('ms');
 
-const prog = new Command('compare-screenshot')
-  .name('compare-screenshots')
-  .command('compare-screenshots')
+const prog = new Command('compare-screenshots')
   .argument('<first-url>')
   .argument('<second-url>')
   .option(

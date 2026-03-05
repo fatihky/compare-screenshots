@@ -1,3 +1,7 @@
+### v0.6.1
+
+- Exit with error code if screenshot dimensions mismatch.
+
 ### v0.6.0
 
 - Exit with error code if screenshots differ.

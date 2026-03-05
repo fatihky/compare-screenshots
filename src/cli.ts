@@ -38,6 +38,7 @@ const prog = new Command('compare-screenshots')
     'output directory to save screenshots and difference',
     './tmp',
   )
+  .option('--silent', 'Only output logs if the screenshots differ.', false)
   .version(pkgJson.version)
   .parse();
 
@@ -84,15 +85,18 @@ async function main() {
     const ss2 = await takeScreenshot(browser, url2, screenshotOpts);
 
     await writeFile(oldSsPath, ss1);
-    console.log(`✔️ Saved "${url1}" screenshot to ${oldSsPath}`);
+    if (!opts.silent)
+      console.log(`✔️ Saved "${url1}" screenshot to ${oldSsPath}`);
 
     await writeFile(newSsPath, ss2);
-    console.log(`✔️ Saved "${url2}" screenshot to ${newSsPath}`);
+    if (!opts.silent)
+      console.log(`✔️ Saved "${url2}" screenshot to ${newSsPath}`);
 
     const diff = pngCompare(ss1, ss2);
 
-    if (diff === null) console.log('✔️ Screenshots are identical');
-    else if ('type' in diff)
+    if (diff === null) {
+      if (!opts.silent) console.log('✔️ Screenshots are identical');
+    } else if ('type' in diff)
       console.log(
         `✖️ Screenshot dimensions do not match. Old: ${diff.old.width}x${diff.old.height}, New: ${diff.new.width}x${diff.new.height}`,
       );

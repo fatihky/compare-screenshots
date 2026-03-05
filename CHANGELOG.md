@@ -1,3 +1,7 @@
+### v0.5.6
+
+Added `--silent` option.
+
 ### v0.5.0
 
 - Log screenshot dimensions if the dimensions mismatch.

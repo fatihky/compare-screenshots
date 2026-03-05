@@ -96,11 +96,13 @@ async function main() {
 
     if (diff === null) {
       if (!opts.silent) console.log('✔️ Screenshots are identical');
-    } else if ('type' in diff)
-      console.log(
+    } else if ('type' in diff) {
+      console.error(
         `✖️ Screenshot dimensions do not match. Old: ${diff.old.width}x${diff.old.height}, New: ${diff.new.width}x${diff.new.height}`,
       );
-    else {
+
+      process.exit(1);
+    } else {
       await writeFile(diffPath, PNG.sync.write(diff.png));
 
       console.error(

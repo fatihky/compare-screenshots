@@ -1,6 +1,10 @@
+### v0.6.0
+
+- Exit with error code if screenshots differ.
+
 ### v0.5.6
 
-Added `--silent` option.
+- Added `--silent` option.
 
 ### v0.5.0
 

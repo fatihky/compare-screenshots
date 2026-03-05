@@ -103,9 +103,11 @@ async function main() {
     else {
       await writeFile(diffPath, PNG.sync.write(diff.png));
 
-      console.log(
+      console.error(
         `🇮 Screenshots have ${diff.pixels} different pixels. Difference image is saved to ${diffPath}`,
       );
+
+      process.exit(1);
     }
   } catch (err) {
     console.log('Failed to take and compare screenshots:', err);

@@ -1,3 +1,7 @@
+### v0.6.2
+
+- build: upgrade deps
+
 ### v0.6.1
 
 - Exit with error code if screenshot dimensions mismatch.

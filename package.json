@@ -27,16 +27,17 @@
     "format": "biome format --write .",
     "lint": "biome lint --write .",
     "test": "echo 'no tests' && exit 1",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.5",
+    "@biomejs/biome": "^2.4.12",
     "@types/ms": "^2.1.0",
-    "@types/node": "^25.3.3",
+    "@types/node": "^25.6.0",
     "@types/papaparse": "^5.5.2",
     "@types/pngjs": "^6.0.5",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "dependencies": {
     "@commander-js/extra-typings": "^14.0.0",
@@ -46,6 +47,6 @@
     "papaparse": "^5.5.3",
     "pixelmatch": "^7.1.0",
     "pngjs": "^7.0.0",
-    "puppeteer": "^24.38.0"
+    "puppeteer": "^24.42.0"
   }
 }

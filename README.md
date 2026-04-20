@@ -27,3 +27,9 @@ compare-screenshots --wait-for load https://example.com/foo https://example.com/
 # target selector
 compare-screenshots --target .content https://example.com/foo https://example.com/bar
 ```
+
+  
+  
+Sponsor:  
+
+[![scrape.do logo](https://scrape.do/images/logo.svg)](https://scrape.do/?utm_source=npm&utm_medium=package&utm_campaign=compare-screenshots)

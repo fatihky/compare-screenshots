@@ -1,2 +1,8 @@
+allowBuilds:
+  puppeteer: true
+minimumReleaseAgeExclude:
+  - '@puppeteer/browsers@3.0.5'
+  - puppeteer-core@25.2.0
+  - puppeteer@25.2.0
 onlyBuiltDependencies:
   - puppeteer
